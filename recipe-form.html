@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Редактирование рецепта — админ-панель</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Кухни мира <span>админ-панель</span></div>
+  <div class="user">admin@champ2026 · <a href="login.html" style="color:#fff;text-decoration:underline">Выйти</a></div>
+</header>
+
+<nav class="nav">
+  <a href="recipes.html" class="active">Рецепты</a>
+  <a href="ingredients.html">Ингредиенты</a>
+  <a href="categories.html">Категории</a>
+  <a href="steps.html">Шаги рецептов</a>
+  <a href="orders.html">Заказы</a>
+</nav>
+
+<main class="container">
+  <div class="page-title">Редактирование рецепта</div>
+
+  <form class="card" method="post" action="#" enctype="multipart/form-data">
+
+    <div class="section-title">Основное</div>
+
+    <div class="field">
+      <label for="title">Название рецепта <span class="req">*</span></label>
+      <input type="text" id="title" name="title" required maxlength="20"
+             value="Борщ" placeholder="Максимум 20 символов">
+      <div class="hint">Не более 20 символов</div>
+      <div class="error-msg">Название обязательно (до 20 символов)</div>
+    </div>
+
+    <div class="field">
+      <label for="description">Описание <span class="req">*</span></label>
+      <textarea id="description" name="description" required minlength="50" maxlength="250"
+                placeholder="От 50 до 250 символов">Классический борщ с говядиной. Готовится на медленном огне с добавлением свеклы, капусты и томатной пасты. Подаётся со сметаной.</textarea>
+      <div class="hint">От 50 до 250 символов</div>
+      <div class="error-msg">Описание должно быть от 50 до 250 символов</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label for="cooking_time">Время приготовления (мин) <span class="req">*</span></label>
+        <input type="number" id="cooking_time" name="cooking_time" required min="1" value="120">
+        <div class="error-msg">Укажите время в минутах (число)</div>
+      </div>
+
+      <div class="field">
+        <label for="difficulty">Сложность <span class="req">*</span></label>
+        <select id="difficulty" name="difficulty" required>
+          <option value="">— выберите —</option>
+          <option value="легко">легко</option>
+          <option value="средне" selected>средне</option>
+          <option value="сложно">сложно</option>
+        </select>
+        <div class="error-msg">Выберите сложность</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label for="category_id">Категория <span class="req">*</span></label>
+        <select id="category_id" name="category_id" required>
+          <option value="">— выберите —</option>
+          <option value="1" selected>Первые блюда</option>
+          <option value="2">Вторые блюда</option>
+          <option value="3">Десерты</option>
+          <option value="4">Напитки</option>
+        </select>
+        <div class="error-msg">Выберите категорию</div>
+      </div>
+
+      <div class="field">
+        <label for="price">Цена (₽) <span class="req">*</span></label>
+        <input type="number" id="price" name="price" required min="100.01" step="0.01" value="0.00">
+        <div class="hint">Формат xx.xx, число больше 100. Для бесплатных — 0.00</div>
+        <div class="error-msg">Цена должна быть числом больше 100 (или 0.00)</div>
+      </div>
+    </div>
+
+    <div class="section-title">Фотографии рецепта</div>
+    <div class="field">
+      <label for="images">Загрузить изображения</label>
+      <input type="file" id="images" name="images[]" accept=".jpg,.jpeg,.png,.webp" multiple>
+      <div class="hint">
+        От 1 до 5 изображений. Форматы: jpg, jpeg, png, webp. Размер каждого ≤ 2 Мб,
+        стороны ≥ 500 px. Миниатюра 350×200 webp, водяной знак — название рецепта.
+      </div>
+    </div>
+
+    <div class="gallery">
+      <div class="item is-default">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='110'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='11' text-anchor='middle' fill='%23888'%3Eборщ 1%3C/text%3E%3C/svg%3E" alt="">
+        <div class="meta">
+          <label><input type="radio" name="default_image" checked> по умолчанию</label>
+          <button class="btn btn-sm btn-danger" type="button">✕</button>
+        </div>
+      </div>
+      <div class="item">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='110'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='11' text-anchor='middle' fill='%23888'%3Eборщ 2%3C/text%3E%3C/svg%3E" alt="">
+        <div class="meta">
+          <label><input type="radio" name="default_image"> по умолчанию</label>
+          <button class="btn btn-sm btn-danger" type="button">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Ингредиенты (минимум 1)</div>
+    <div class="field">
+      <table class="table" style="border:1px solid var(--border);border-radius:6px;overflow:hidden">
+        <thead>
+          <tr><th>Название</th><th>Количество</th><th>Ед. изм.</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Свекла</td>
+            <td><input type="number" min="0" step="0.01" value="2" style="width:90px;padding:6px;border:1px solid var(--border);border-radius:4px"></td>
+            <td>
+              <select style="padding:6px;border:1px solid var(--border);border-radius:4px">
+                <option selected>шт</option><option>л</option><option>кг</option><option>мг</option><option>ст.л.</option>
+              </select>
+            </td>
+            <td><button class="btn btn-sm btn-danger" type="button">✕</button></td>
+          </tr>
+          <tr>
+            <td>Говядина</td>
+            <td><input type="number" min="0" step="0.01" value="500" style="width:90px;padding:6px;border:1px solid var(--border);border-radius:4px"></td>
+            <td>
+              <select style="padding:6px;border:1px solid var(--border);border-radius:4px">
+                <option>шт</option><option>л</option><option selected>кг</option><option>мг</option><option>ст.л.</option>
+              </select>
+            </td>
+            <td><button class="btn btn-sm btn-danger" type="button">✕</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px">
+        <button class="btn btn-sm btn-ghost" type="button">+ Добавить ингредиент</button>
+      </div>
+    </div>
+
+    <div class="section-title">Шаги приготовления (минимум 1)</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="padding:14px;box-shadow:none;border:1px solid var(--border)">
+        <div class="grid-2">
+          <div class="field">
+            <label>Название шага <span class="req">*</span></label>
+            <input type="text" required maxlength="40" value="Подготовка">
+            <div class="error-msg">Название обязательно (до 40 символов)</div>
+          </div>
+          <div class="field">
+            <label>Фотография шага <span class="req">*</span></label>
+            <input type="file" accept=".jpg,.jpeg,.png,.webp">
+            <div class="hint">≤ 2 Мб, jpg/jpeg/png/webp</div>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Описание шага <span class="req">*</span></label>
+          <textarea required maxlength="255" placeholder="До 255 символов">Сварить бульон из говядины.</textarea>
+          <div class="error-msg">Описание обязательно (до 255 символов)</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px;box-shadow:none;border:1px solid var(--border)">
+        <div class="grid-2">
+          <div class="field">
+            <label>Название шага <span class="req">*</span></label>
+            <input type="text" required maxlength="40" value="Варка">
+          </div>
+          <div class="field">
+            <label>Фотография шага <span class="req">*</span></label>
+            <input type="file" accept=".jpg,.jpeg,.png,.webp">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Описание шага <span class="req">*</span></label>
+          <textarea required maxlength="255">Добавить свеклу и капусту, варить 30 минут.</textarea>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      <button class="btn btn-sm btn-ghost" type="button">+ Добавить шаг</button>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:28px">
+      <a href="recipes.html" class="btn btn-ghost">Отмена</a>
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>

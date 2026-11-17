@@ -1,0 +1,355 @@
+/* ===== Базовые стили ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --primary: #c0392b;
+  --primary-dark: #962d22;
+  --text: #222;
+  --muted: #6b7280;
+  --border: #d9dde3;
+  --danger: #d32f2f;
+  --danger-bg: #fdecea;
+  --success: #2e7d32;
+  --warning: #ed6c02;
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.45;
+  min-height: 100vh;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Верхняя панель ===== */
+.topbar {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+.topbar .brand { font-weight: 700; font-size: 18px; letter-spacing: .5px; }
+.topbar .brand span { opacity: .8; font-weight: 400; font-size: 14px; margin-left: 8px; }
+.topbar .user { font-size: 14px; opacity: .95; }
+
+/* ===== Навигация ===== */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 4px;
+  padding: 0 24px;
+  flex-wrap: wrap;
+}
+.nav a {
+  padding: 14px 16px;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+}
+.nav a:hover { color: var(--primary); text-decoration: none; }
+.nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* ===== Контейнер ===== */
+.container { max-width: 1200px; margin: 24px auto; padding: 0 24px; }
+.page-title { font-size: 22px; margin-bottom: 18px; font-weight: 600; }
+.page-title .count { color: var(--muted); font-weight: 400; font-size: 15px; }
+
+/* ===== Карточка ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* ===== Кнопки ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #eef0f3;
+  color: var(--text);
+  transition: .15s;
+}
+.btn:hover { filter: brightness(.96); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); filter: none; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-ghost { background: transparent; border-color: var(--border); }
+.btn-sm { padding: 6px 12px; font-size: 13px; }
+
+/* ===== Формы ===== */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.field .req { color: var(--danger); margin-left: 2px; }
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="number"],
+.field input[type="file"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+  transition: .15s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(192,57,43,.12);
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ===== Валидация (только CSS) ===== */
+.field input:user-invalid,
+.field select:user-invalid,
+.field textarea:user-invalid,
+.field input:invalid:not(:placeholder-shown),
+.field textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+}
+.field .error-msg {
+  display: none;
+  color: var(--danger);
+  font-size: 12.5px;
+  margin-top: 4px;
+}
+/* Показываем сообщение, если поле невалидно и уже "трогали" */
+.field input:user-invalid ~ .error-msg,
+.field textarea:user-invalid ~ .error-msg,
+.field select:user-invalid ~ .error-msg { display: block; }
+
+.field .error-msg::before { content: "⚠ "; }
+
+/* Файловые поля - простая подсветка */
+.field input[type="file"]:invalid { border-color: var(--danger); }
+
+/* ===== Таблицы ===== */
+.table { width: 100%; border-collapse: collapse; background: #fff; }
+.table th, .table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.table th {
+  background: #f8f9fb;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  color: var(--muted);
+}
+.table tbody tr:hover { background: #fafbfc; }
+.table .thumb {
+  width: 70px; height: 40px;
+  object-fit: contain;   /* contain, как в ТЗ */
+  background: #f0f0f0;
+  border-radius: 4px;
+  display: block;
+}
+.table .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ===== Бейджи ===== */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #eef0f3;
+  color: #444;
+}
+.badge.easy { background: #e6f4ea; color: #1e6b2f; }
+.badge.medium { background: #fff4e5; color: #9a5b00; }
+.badge.hard { background: #fdecea; color: #b71c1c; }
+.badge.trash { background: #fdecea; color: #b71c1c; }
+.badge.paid { background: #e6f4ea; color: #1e6b2f; }
+.badge.unpaid { background: #fff4e5; color: #9a5b00; }
+.badge.failed { background: #fdecea; color: #b71c1c; }
+.badge.expired { background: #eceff1; color: #455a64; }
+
+/* ===== Фильтры / сортировка ===== */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 18px;
+  background: #fff;
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.toolbar .field { margin: 0; min-width: 160px; flex: 1 1 160px; }
+.toolbar .field label { font-size: 12.5px; color: var(--muted); }
+.toolbar .field select, .toolbar .field input { padding: 8px 10px; font-size: 14px; }
+
+/* ===== Пагинация ===== */
+.pagination {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.pagination a, .pagination span {
+  padding: 8px 13px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+}
+.pagination .current {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.pagination .disabled { color: #bbb; pointer-events: none; }
+
+/* ===== Галерея изображений ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+.gallery .item {
+  position: relative;
+  background: #f5f5f5;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.gallery .item img {
+  width: 100%;
+  height: 110px;
+  object-fit: contain;  /* contain — как в ТЗ */
+  background: #eaeaea;
+  display: block;
+}
+.gallery .item .meta {
+  padding: 8px 10px;
+  font-size: 12.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gallery .item.is-default { outline: 2px solid var(--success); outline-offset: -2px; }
+.gallery .item.is-default::before {
+  content: "По умолчанию";
+  position: absolute;
+  top: 6px; left: 6px;
+  background: var(--success);
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* ===== Двухколоночная сетка формы ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+/* ===== Экран авторизации ===== */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #c0392b 0%, #8e2419 100%);
+  padding: 24px;
+}
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+}
+.login-card h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+.login-card .sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.login-card .btn-primary { width: 100%; padding: 12px; font-size: 15px; }
+
+/* ===== Карточки рецептов (мобильная альтернатива таблице) ===== */
+.cards { display: none; }
+
+@media (max-width: 820px) {
+  .table-wrap table { display: none; }
+  .cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .cards .recipe-card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px;
+  }
+  .cards .recipe-card img {
+    width: 100%; height: 140px; object-fit: contain;
+    background: #f0f0f0; border-radius: 6px;
+  }
+  .cards .recipe-card h3 { margin: 10px 0 4px; font-size: 16px; }
+  .cards .recipe-card .row { font-size: 13px; color: var(--muted); margin: 3px 0; }
+  .cards .recipe-card .actions { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+}
+
+/* ===== Сообщение "нет данных" ===== */
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+.empty strong { display: block; font-size: 16px; margin-bottom: 6px; color: var(--text); }
+
+/* ===== Заголовки секций формы ===== */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.section-title:first-child { margin-top: 0; }
+
+/* ===== Пометка "в корзине" в строке таблицы ===== */
+tr.trashed { background: #fff8f8; opacity: .85; }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Категории — админ-панель</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Кухни мира <span>админ-панель</span></div>
+  <div class="user">admin@champ2026 · <a href="login.html" style="color:#fff;text-decoration:underline">Выйти</a></div>
+</header>
+
+<nav class="nav">
+  <a href="recipes.html">Рецепты</a>
+  <a href="ingredients.html">Ингредиенты</a>
+  <a href="categories.html" class="active">Категории</a>
+  <a href="steps.html">Шаги рецептов</a>
+  <a href="orders.html">Заказы</a>
+</nav>
+
+<main class="container">
+  <div class="page-title">Категории рецептов</div>
+
+  <div class="card" style="margin-bottom:18px">
+    <form method="post" action="#">
+      <div class="field">
+        <label for="cat-name">Название категории <span class="req">*</span></label>
+        <input type="text" id="cat-name" name="name" required maxlength="40"
+               placeholder="Например, Первые блюда">
+        <div class="hint">Уникальное, максимум 40 символов</div>
+        <div class="error-msg">Название обязательно (до 40 символов, уникальное)</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Добавить категорию</button>
+    </form>
+  </div>
+
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table class="table">
+      <thead>
+        <tr><th>Название</th><th>Рецептов</th><th>Действия</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Первые блюда</td><td>8</td><td class="actions">
+          <button class="btn btn-sm btn-ghost" type="button">Изменить</button>
+          <button class="btn btn-sm btn-danger" type="button" disabled title="В категории есть рецепты">Удалить</button>
+        </td></tr>
+        <tr><td>Вторые блюда</td><td>6</td><td class="actions">
+          <button class="btn btn-sm btn-ghost" type="button">Изменить</button>
+          <button class="btn btn-sm btn-danger" type="button" disabled>Удалить</button>
+        </td></tr>
+        <tr><td>Десерты</td><td>5</td><td class="actions">
+          <button class="btn btn-sm btn-ghost" type="button">Изменить</button>
+          <button class="btn btn-sm btn-danger" type="button" disabled>Удалить</button>
+        </td></tr>
+        <tr><td>Напитки</td><td>0</td><td class="actions">
+          <button class="btn btn-sm btn-ghost" type="button">Изменить</button>
+          <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+</body>
+</html>

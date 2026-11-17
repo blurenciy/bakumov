@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рецепты — админ-панель «Кухни мира»</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Кухни мира <span>админ-панель</span></div>
+  <div class="user">admin@champ2026 · <a href="login.html" style="color:#fff;text-decoration:underline">Выйти</a></div>
+</header>
+
+<nav class="nav">
+  <a href="recipes.html" class="active">Рецепты</a>
+  <a href="ingredients.html">Ингредиенты</a>
+  <a href="categories.html">Категории</a>
+  <a href="steps.html">Шаги рецептов</a>
+  <a href="orders.html">Заказы</a>
+</nav>
+
+<main class="container">
+  <div class="page-title">Рецепты <span class="count">— всего 25</span></div>
+
+  <form class="toolbar" method="get" action="#">
+    <div class="field">
+      <label for="f-diff">Сложность</label>
+      <select id="f-diff" name="difficulty">
+        <option value="">Все</option>
+        <option>легко</option>
+        <option>средне</option>
+        <option>сложно</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-time">Время приготовления</label>
+      <select id="f-time" name="time_range">
+        <option value="">Любое</option>
+        <option value="0-15">до 15 минут</option>
+        <option value="60-120">60–120 минут</option>
+        <option value="120-">свыше 120 минут</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-cat">Категория</label>
+      <select id="f-cat" name="category_id">
+        <option value="">Все</option>
+        <option value="1">Первые блюда</option>
+        <option value="2">Вторые блюда</option>
+        <option value="3">Десерты</option>
+        <option value="4">Напитки</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-price">Стоимость</label>
+      <select id="f-price" name="price">
+        <option value="">Любая</option>
+        <option value="free">Бесплатные (0)</option>
+        <option value="paid">Платные (&gt; 0)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-sort">Сортировка</label>
+      <select id="f-sort" name="sort">
+        <option value="newest_desc" selected>По новизне 🔽 (по умолчанию)</option>
+        <option value="newest_asc">По новизне 🔼</option>
+        <option value="time_asc">По времени 🔼</option>
+        <option value="time_desc">По времени 🔽</option>
+      </select>
+    </div>
+    <div class="field" style="flex:0 0 auto;min-width:auto">
+      <button class="btn btn-primary" type="submit">Применить</button>
+    </div>
+  </form>
+
+  <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+    <a href="recipe-form.html" class="btn btn-primary">+ Добавить рецепт</a>
+  </div>
+
+  <!-- Таблица (десктоп) -->
+  <div class="card table-wrap" style="padding:0;overflow-x:auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Фото</th>
+          <th>Название</th>
+          <th>Время</th>
+          <th>Стоимость</th>
+          <th>Сложность</th>
+          <th>Категория</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img class="thumb" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='9' text-anchor='middle' fill='%23888'%3Eборщ%3C/text%3E%3C/svg%3E" alt=""></td>
+          <td>Борщ</td>
+          <td>2 часа</td>
+          <td>0.00 ₽</td>
+          <td><span class="badge medium">средне</span></td>
+          <td>Первые блюда</td>
+          <td class="actions">
+            <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+            <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+          </td>
+        </tr>
+        <tr>
+          <td><img class="thumb" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='9' text-anchor='middle' fill='%23888'%3Eплов%3C/text%3E%3C/svg%3E" alt=""></td>
+          <td>Плов</td>
+          <td>1 час 20 минут</td>
+          <td>500.00 ₽</td>
+          <td><span class="badge hard">сложно</span></td>
+          <td>Вторые блюда</td>
+          <td class="actions">
+            <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+            <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+          </td>
+        </tr>
+        <tr class="trashed">
+          <td><img class="thumb" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23f5d6d2'/%3E%3Ctext x='50%25' y='55%25' font-size='9' text-anchor='middle' fill='%23b33'%3Eсалат%3C/text%3E%3C/svg%3E" alt=""></td>
+          <td>Салат «Ташкент» <span class="badge trash">Помечен на удаление</span></td>
+          <td>25 минут</td>
+          <td>0.00 ₽</td>
+          <td><span class="badge easy">легко</span></td>
+          <td>Салаты</td>
+          <td class="actions">
+            <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+            <button class="btn btn-sm btn-success" type="button">Восстановить</button>
+            <button class="btn btn-sm btn-danger" type="button">Удалить окончательно</button>
+          </td>
+        </tr>
+        <tr>
+          <td><img class="thumb" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='9' text-anchor='middle' fill='%23888'%3Eблины%3C/text%3E%3C/svg%3E" alt=""></td>
+          <td>Блины</td>
+          <td>15 минут</td>
+          <td>0.00 ₽</td>
+          <td><span class="badge easy">легко</span></td>
+          <td>Десерты</td>
+          <td class="actions">
+            <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+            <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+          </td>
+        </tr>
+        <tr>
+          <td><img class="thumb" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='9' text-anchor='middle' fill='%23888'%3Eкомпот%3C/text%3E%3C/svg%3E" alt=""></td>
+          <td>Компот</td>
+          <td>40 минут</td>
+          <td>100.00 ₽</td>
+          <td><span class="badge easy">легко</span></td>
+          <td>Напитки</td>
+          <td class="actions">
+            <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+            <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Карточки (мобильные) -->
+  <div class="cards">
+    <div class="recipe-card">
+      <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='140'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='55%25' font-size='16' text-anchor='middle' fill='%23888'%3Eборщ%3C/text%3E%3C/svg%3E" alt="">
+      <h3>Борщ</h3>
+      <div class="row">⏱ 2 часа ·  0.00 ₽</div>
+      <div class="row">Сложность: средне · Первые блюда</div>
+      <div class="actions">
+        <a href="recipe-form.html" class="btn btn-sm btn-ghost">Изменить</a>
+        <button class="btn btn-sm btn-danger" type="button">Удалить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <span class="disabled">‹ Назад</span>
+    <span class="current">1</span>
+    <a href="recipes.html?page=2">2</a>
+    <a href="recipes.html?page=3">3</a>
+    <a href="recipes.html?page=4">4</a>
+    <a href="recipes.html?page=5">5</a>
+    <a href="recipes.html?page=2">Вперёд ›</a>
+  </div>
+  </div>
+</main>
+
+</body>
+</html>
